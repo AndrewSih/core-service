@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- Insert data into email_table -->
+    <changeSet id="insertDataEmail" author="sihai">
+        <insert tableName="email_table">
+            <column name="email" value="buyer1@example.com"/>
+        </insert>
+        <insert tableName="email_table">
+            <column name="email" value="buyer2@example.com"/>
+        </insert>
+        <insert tableName="email_table">
+            <column name="email" value="buyer3@example.com"/>
+        </insert>
+        <insert tableName="email_table">
+            <column name="email" value="merchant1@example.com"/>
+        </insert>
+        <insert tableName="email_table">
+            <column name="email" value="merchant2@example.com"/>
+        </insert>
+        <insert tableName="email_table">
+            <column name="email" value="merchant3@example.com"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertDataGroupUsers" author="sihai">
+        <insert tableName="group_users_table">
+            <column name="group_name" value="Покупашки"/>
+        </insert>
+        <insert tableName="group_users_table">
+            <column name="group_name" value="Продавашки"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertDataTemplate" author="sihai">
+        <insert tableName="template_table">
+            <column name="data" value="Только ?day, купи ?firstQt ?product вместо ?secondQt по цене ?price BYN"/>
+        </insert>
+        <insert tableName="template_table">
+            <column name="data" value="Закажи ?firstQt шт. ?product и получи ?secondQt шт"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insertDataGroupUserMail" author="sihai">
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="1"/>
+            <column name="email_id" value="1"/>
+        </insert>
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="1"/>
+            <column name="email_id" value="2"/>
+        </insert>
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="1"/>
+            <column name="email_id" value="3"/>
+        </insert>
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="2"/>
+            <column name="email_id" value="4"/>
+        </insert>
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="2"/>
+            <column name="email_id" value="5"/>
+        </insert>
+        <insert tableName="group_users_email">
+            <column name="group_users_id" value="2"/>
+            <column name="email_id" value="6"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
