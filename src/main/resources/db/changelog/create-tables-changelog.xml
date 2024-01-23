@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+
+    <changeSet id="create_group_users_table" author="sihai">
+        <createTable tableName="group_users_table">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="group_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_group_users_group_name" tableName="group_users_table">
+            <column name="group_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="create_email_table" author="sihai">
+        <createTable tableName="email_table">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_email" tableName="email_table">
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="create_template_table" author="sihai">
+        <createTable tableName="template_table">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="data" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex indexName="idx_template_data" tableName="template_table">
+            <column name="data"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="create_message_table" author="sihai">
+        <createTable tableName="message_table">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unique_message" type="VARCHAR(255)" >
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="group_users_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="file_data" type="MEDIUMTEXT">
+            </column>
+            <column
+                    name="type_file" type="VARCHAR(5)">
+            </column>
+            <column
+                    name="status" type="VARCHAR(255)">
+            </column>
+            <column
+                    name="message_data" type="VARCHAR(255)">
+            </column>
+            <column
+                    name="message_text" type="VARCHAR(255)">
+            </column>
+            <column
+                    name="date_status" type="TIMESTAMP">
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="message_table" baseColumnNames="group_users_id"
+                                 referencedTableName="group_users_table" referencedColumnNames="id"
+                                 constraintName="fk_group_users_id"/>
+
+        <addForeignKeyConstraint baseTableName="message_table" baseColumnNames="template_id"
+                                 referencedTableName="template_table" referencedColumnNames="id"
+                                 constraintName="fk_template_id"/>
+
+        <createIndex tableName="message_table" indexName="idx_unique_message">
+            <column name="unique_message"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet id="createGroupUsersEmailTable" author="sihai">
+        <createTable tableName="group_users_email">
+            <column name="group_users_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+
+            </column>
+            <column name="email_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="group_users_email" baseColumnNames="group_users_id"
+                                 referencedTableName="group_users_table" referencedColumnNames="id"
+                                 constraintName="fk_group_users_id"/>
+
+        <addForeignKeyConstraint baseTableName="group_users_email" baseColumnNames="email_id"
+                                 referencedTableName="email_table" referencedColumnNames="id"
+                                 constraintName="fk_email_id"/>
+    </changeSet>
+</databaseChangeLog>

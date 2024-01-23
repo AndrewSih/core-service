@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "queue.save-and-send",
+      "type": "java.lang.String",
+      "description": "Description for queue.save-and-send."
+    },
+    {
+      "name": "queue.get-unique-message",
+      "type": "java.lang.String",
+      "description": "Description for queue.get-unique-message."
+    },
+    {
+      "name": "queue.send-to-mail-service",
+      "type": "java.lang.String",
+      "description": "Description for queue.send-to-mail-service."
+    },
+    {
+      "name": "queue.send-from-mail-service",
+      "type": "java.lang.String",
+      "description": "Description for queue.send-from-mail-service."
+    }
+  ] }
